@@ -34,19 +34,24 @@ class Menu_Pages {
       'meta_value' => 'pending'
     ] );
 
-    $requests_count = count($requests);
     $pending_count = '';
 
-    if ( $requests_count > 0 ) {
+    if ( $requests ) {
 
-      ob_start();
-      ?>
-      <span class="update-plugins count-<?php echo esc_attr($requests_count); ?>">
-        <span class="plugin-count" aria-hidden="true"><?php echo esc_html($requests_count); ?></span>
-        <span class="screen-reader-text"><?php echo sprintf( esc_html__( '%s notifications', 'woo-stream' ), $requests_count ); ?></span>
-      </span>
-      <?php
-      $pending_count = ob_get_clean();
+      $requests_count = count($requests);
+
+      if ( $requests_count > 0 ) {
+
+        ob_start();
+        ?>
+        <span class="update-plugins count-<?php echo esc_attr($requests_count); ?>">
+          <span class="plugin-count" aria-hidden="true"><?php echo esc_html($requests_count); ?></span>
+          <span class="screen-reader-text"><?php echo sprintf( esc_html__( '%s notifications', 'woo-stream' ), $requests_count ); ?></span>
+        </span>
+        <?php
+        $pending_count = ob_get_clean();
+
+      }
 
     }
 
@@ -81,18 +86,14 @@ class Menu_Pages {
       [ $activation_requests, 'html' ]
     );
 
-    if ( is_multisite() && is_main_site() ) {
-      // do nothing...
-    } else {
-      add_submenu_page(
-        'woo-stream-options',
-        esc_html__( 'License', 'woo-stream' ),
-        esc_html__( 'License', 'woo-stream' ),
-        'manage_options',
-        'woo-stream-license',
-        [ $license, 'html' ]
-      );
-    }
+    add_submenu_page(
+      'woo-stream-options',
+      esc_html__( 'License', 'woo-stream' ),
+      esc_html__( 'License', 'woo-stream' ),
+      'manage_options',
+      'woo-stream-license',
+      [ $license, 'html' ]
+    );
 
   }
 
