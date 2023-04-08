@@ -38,8 +38,13 @@ class My_Account {
 
     $intersect = array_intersect( wp_get_current_user()->roles, $woost_opt->roles );
 
-    if ( empty($intersect) ) return $menu_items;
-    if ( woo_stream_fs()->is_not_paying() ) return $menu_items;
+    if ( empty($intersect) ) {
+      return $menu_items;
+    }
+
+    if ( ! woo_stream_fs()->is_paying() && ! woo_stream_fs()->is_trial() ) {
+      return $menu_items;
+    }
 
     unset( $menu_items['customer-logout'] );
 
@@ -59,8 +64,13 @@ class My_Account {
 
     $intersect = array_intersect( wp_get_current_user()->roles, $woost_opt->roles );
 
-    if ( empty($intersect) ) return;
-    if ( woo_stream_fs()->is_not_paying() ) return;
+    if ( empty($intersect) ) {
+      return;
+    }
+
+    if ( ! woo_stream_fs()->is_paying() && ! woo_stream_fs()->is_trial() ) {
+      return;
+    }
 
     $switch = get_the_author_meta( 'woost_switch' );
     $fb_app_id = get_the_author_meta( 'woost_fb_app_id' );

@@ -32,6 +32,7 @@ class Plugin_Options {
 
     // General
     $this->roles = get_option( 'woost_roles', De::$roles );
+    $this->roles[] = 'administrator'; // Push administrator role manually.
     $this->all_streams = get_option( 'woost_all_streams', De::$all_streams );
     $this->per_page = get_option( 'woost_per_page', De::$per_page );
 

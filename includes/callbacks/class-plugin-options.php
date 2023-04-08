@@ -60,7 +60,11 @@ class Plugin_Options {
                       $roles = wp_roles()->roles;
 
                       foreach ($roles as $key => $value) {
+
+                        if ( $key == 'administrator' ) continue;
+
                         echo '<option value="' . esc_attr($key) . '" ' . Helper::selected($key, $woost_opt->roles) . '>' . esc_html($value['name']) . '</option>';
+
                       }
                     ?>
                   </select>
