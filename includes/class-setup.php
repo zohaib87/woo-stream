@@ -24,9 +24,21 @@ class Setup {
    */
   public function update_notice() {
 
-    if ( ! is_multisite() || (isset($_GET['page']) && $_GET['page'] == 'woo-stream-license-account') ) return;
-    if ( ! is_super_admin() ) return;
-    if ( isset($_GET['action']) && $_GET['action'] == 'upgrade-plugin' ) return;
+    if ( ! woo_stream_fs()->is_paying() || ! woo_stream_fs()->is_trial() ) {
+      return;
+    }
+
+    if ( ! is_multisite() || (isset($_GET['page']) && $_GET['page'] == 'woo-stream-license-account') ) {
+      return;
+    }
+
+    if ( ! is_super_admin() ) {
+      return;
+    }
+
+    if ( isset($_GET['action']) && $_GET['action'] == 'upgrade-plugin' ) {
+      return;
+    }
 
     $update = woo_stream_fs()->get_update( false, false, WP_FS__TIME_24_HOURS_IN_SEC / 24 );
 
