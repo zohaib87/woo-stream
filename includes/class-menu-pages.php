@@ -16,7 +16,7 @@ class Menu_Pages {
 
   function __construct() {
 
-    add_action('admin_menu', [$this, 'add_menu_pages']);
+    add_action( 'admin_menu', [ $this, 'add_menu_pages' ] );
 
   }
 
@@ -29,13 +29,34 @@ class Menu_Pages {
     $activation_requests = new Activation_Requests();
     $license = new License();
 
+    $requests = get_users( [
+      'meta_key' => 'woost_switch',
+      'meta_value' => 'pending'
+    ] );
+
+    $requests_count = count($requests);
+    $pending_count = '';
+
+    if ( $requests_count > 0 ) {
+
+      ob_start();
+      ?>
+      <span class="update-plugins count-<?php echo esc_attr($requests_count); ?>">
+        <span class="plugin-count" aria-hidden="true"><?php echo esc_html($requests_count); ?></span>
+        <span class="screen-reader-text"><?php echo sprintf( esc_html__( '%s notifications', 'woo-stream' ), $requests_count ); ?></span>
+      </span>
+      <?php
+      $pending_count = ob_get_clean();
+
+    }
+
     /* Menu Pages */
     add_menu_page(
-      esc_html__('Woo Stream', 'woo-stream'),
-      esc_html__('Woo Stream', 'woo-stream'),
+      esc_html__( 'Woo Stream', 'woo-stream' ),
+      esc_html__( 'Woo Stream', 'woo-stream' ) . wp_kses_post($pending_count),
       'manage_options',
       'woo-stream-options',
-      [$plugin_options, 'html'],
+      [ $plugin_options, 'html' ],
       'dashicons-welcome-widgets-menus',
       56
     );
@@ -54,19 +75,19 @@ class Menu_Pages {
     add_submenu_page(
       'woo-stream-options',
       esc_html__( 'Requests', 'woo-stream' ),
-      esc_html__( 'Requests', 'woo-stream' ),
+      esc_html__( 'Requests', 'woo-stream' ) . wp_kses_post($pending_count),
       'manage_options',
       'woo-stream-requests',
       [ $activation_requests, 'html' ]
     );
 
-    if (is_multisite() && is_main_site()) {
+    if ( is_multisite() && is_main_site() ) {
       // do nothing...
     } else {
       add_submenu_page(
         'woo-stream-options',
-        esc_html__('License', 'woo-stream'),
-        esc_html__('License', 'woo-stream'),
+        esc_html__( 'License', 'woo-stream' ),
+        esc_html__( 'License', 'woo-stream' ),
         'manage_options',
         'woo-stream-license',
         [ $license, 'html' ]
