@@ -36,7 +36,6 @@ class Menu_Pages {
 
     $pending_count = '';
 
-
     if ( $requests ) {
 
       $requests_count = count($requests);
