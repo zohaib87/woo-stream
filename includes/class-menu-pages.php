@@ -53,7 +53,7 @@ class Menu_Pages {
     /* Menu Pages */
     add_menu_page(
       esc_html__( 'Woo Stream', 'woo-stream' ),
-      esc_html__( 'Woo Stream', 'woo-stream' ) . wp_kses_post($pending_count),
+      sprintf( esc_html__( 'Woo Stream %s', 'woo-stream' ), wp_kses_post($pending_count) ),
       'manage_options',
       'woo-stream-options',
       [ $plugin_options, 'html' ],
@@ -75,7 +75,7 @@ class Menu_Pages {
     add_submenu_page(
       'woo-stream-options',
       esc_html__( 'Requests', 'woo-stream' ),
-      esc_html__( 'Requests', 'woo-stream' ) . wp_kses_post($pending_count),
+      sprintf( esc_html__( 'Requests %s', 'woo-stream' ), wp_kses_post($pending_count) ),
       'manage_options',
       'woo-stream-requests',
       [ $activation_requests, 'html' ]
