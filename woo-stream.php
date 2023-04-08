@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Woo Stream
  * Description: Facebook live stream integration for WooCommerce.
- * Version:     0.0.2
+ * Version:     0.0.3
  * Author:      Muhammad Zohaib - XeCreators
  * Author URI:  https://www.xecreators.pk
  * License:     GPL2
