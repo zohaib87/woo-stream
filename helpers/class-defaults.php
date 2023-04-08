@@ -15,7 +15,7 @@ class Defaults {
   function __construct() {
 
     // General
-    self::$roles = '';
+    self::$roles = array();
     self::$all_streams = '';
     self::$per_page = 20;
 

@@ -243,9 +243,9 @@ class Helpers {
   public static function selected($needle, $array) {
 
     $needle = esc_attr($needle);
-    $array = array_map('esc_attr', $array);
+    $array = array_map( 'esc_attr', $array );
 
-    if (in_array($needle, $array)) {
+    if ( in_array($needle, $array) ) {
       return 'selected';
     } else {
       return '';
