@@ -24,7 +24,7 @@ class Setup {
    */
   public function update_notice() {
 
-    if ( ! woo_stream_fs()->is_paying() || ! woo_stream_fs()->is_trial() ) {
+    if ( ! woo_stream_fs()->is_paying() && ! woo_stream_fs()->is_trial() ) {
       return;
     }
 
