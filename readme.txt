@@ -10,6 +10,7 @@ Facebook live stream integration for WooCommerce.
 == Changelog ==
 ----- v0.0.3 ------------
 New Added: Request notifications count on menu page.
+Fixed: Disabling streaming service for admin.
 Fixed: Update notifications on multisite.
 Fixed: Plugin activation error.
 Fixed: Some minor bugs.
