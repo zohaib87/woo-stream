@@ -5,7 +5,7 @@
  * @package Woo Stream
  */
 
-use Woo_Stream\Helpers\Helpers as Helper;
+use Woo_Stream\Helpers\Helpers;
 
 function woo_stream_save_fb_settings() {
 
@@ -28,7 +28,7 @@ function woo_stream_save_fb_settings() {
     update_user_meta( $user_id, 'woost_fb_permanent_token', $permanent_token );
 
     $success = esc_html__( 'Settings saved successfully.', 'woo-stream' );
-    $expiry = Helper::fb_token_expiry( $app_id, $app_secret, $access_token );
+    $expiry = Helpers::fb_token_expiry( $app_id, $app_secret, $access_token );
 
   } else {
 

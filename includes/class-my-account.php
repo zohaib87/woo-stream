@@ -7,7 +7,7 @@
  * @package Woo Stream
  */
 
-use Woo_Stream\Helpers\Helpers as Helper;
+use Woo_Stream\Helpers\Helpers;
 
 class My_Account {
 
@@ -42,10 +42,6 @@ class My_Account {
       return $menu_items;
     }
 
-    if ( ! woo_stream_fs()->is_paying() && ! woo_stream_fs()->is_trial() ) {
-      return $menu_items;
-    }
-
     unset( $menu_items['customer-logout'] );
 
     $menu_items['woost-settings'] = esc_html__( 'Stream Settings', 'woo-stream' );
@@ -65,10 +61,6 @@ class My_Account {
     $intersect = array_intersect( wp_get_current_user()->roles, $woost_opt->roles );
 
     if ( empty($intersect) ) {
-      return;
-    }
-
-    if ( ! woo_stream_fs()->is_paying() && ! woo_stream_fs()->is_trial() ) {
       return;
     }
 
@@ -143,7 +135,7 @@ class My_Account {
           <!-- Access Token (Short Lived) -->
           <label for="access_token" class="woost-label"><?php echo esc_html__('Access Token (Short Lived)', 'woo-stream'); ?></label>
           <input type="text" name="access_token" id="access_token" class="woost-form-control" value="<?php echo esc_attr($fb_access_token); ?>">
-          <small><?php echo esc_html__( 'Expires: ', 'woo-stream' ); ?><span class="woost-short-token-expiry"><?php echo Helper::fb_token_expiry( $fb_app_id, $fb_app_secret, $fb_access_token ); ?></span></small>
+          <small><?php echo esc_html__( 'Expires: ', 'woo-stream' ); ?><span class="woost-short-token-expiry"><?php echo Helpers::fb_token_expiry( $fb_app_id, $fb_app_secret, $fb_access_token ); ?></span></small>
 
           <!-- User/Page ID -->
           <label for="page_id" class="woost-label"><?php echo esc_html__('User/Page ID', 'woo-stream'); ?></label>

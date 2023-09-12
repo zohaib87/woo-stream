@@ -5,7 +5,7 @@
  * @package Woo Stream
  */
 
-use Woo_Stream\Helpers\Helpers as Helper;
+use Woo_Stream\Helpers\Helpers;
 
 function woo_stream_load_videos() {
 
@@ -25,7 +25,7 @@ function woo_stream_load_videos() {
     if ( $user_id ) {
 
       $permanent_token = get_the_author_meta( 'woost_fb_permanent_token', $user_id );
-      $data = Helper::fb_live_videos($permanent_token);
+      $data = Helpers::fb_live_videos($permanent_token);
 
     } else {
 
@@ -51,7 +51,7 @@ function woo_stream_load_videos() {
 
       foreach ( $current_items as $current_item ) {
 
-        $url = Helper::iframe_src( $current_item->embed_html );
+        $url = Helpers::iframe_src( $current_item->embed_html );
 
         ob_start();
         ?>
@@ -65,7 +65,7 @@ function woo_stream_load_videos() {
 
       }
 
-      $paging = ( (int) $page_count === 1 ) ? '' : Helper::paging_nav( 1, $page_no, $page_count );
+      $paging = ( (int) $page_count === 1 ) ? '' : Helpers::paging_nav( 1, $page_no, $page_count );
 
     } else {
 

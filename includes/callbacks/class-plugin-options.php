@@ -7,8 +7,8 @@
 
 namespace Woo_Stream\Includes\Callbacks;
 
-use Woo_Stream\Helpers\Helpers as Helper;
-use Woo_Stream\Helpers\Views as View;
+use Woo_Stream\Helpers\Helpers;
+use Woo_Stream\Helpers\Views;
 
 class Plugin_Options {
 
@@ -33,7 +33,7 @@ class Plugin_Options {
 
         <h2 class="nav-tab-wrapper">
           <?php
-            View::plugin_option_tabs( [
+            Views::plugin_option_tabs( [
               array( esc_html__( 'General Options', 'woo-stream' ), 'general', $active_tab )
             ] );
           ?>
@@ -63,7 +63,7 @@ class Plugin_Options {
 
                         if ( $key == 'administrator' ) continue;
 
-                        echo '<option value="' . esc_attr($key) . '" ' . Helper::selected($key, $woost_opt->roles) . '>' . esc_html($value['name']) . '</option>';
+                        echo '<option value="' . esc_attr($key) . '" ' . Helpers::selected($key, $woost_opt->roles) . '>' . esc_html($value['name']) . '</option>';
 
                       }
                     ?>

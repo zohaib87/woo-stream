@@ -7,7 +7,7 @@
 
 namespace Woo_Stream\Helpers;
 
-use Woo_Stream\Helpers\Helpers as Helper;
+use Woo_Stream\Helpers\Helpers;
 use Woo_Stream\Helpers\Defaults as De;
 
 class Plugin_Options {

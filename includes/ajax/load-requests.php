@@ -5,7 +5,7 @@
  * @package Woo Stream
  */
 
-use Woo_Stream\Helpers\Helpers as Helper;
+use Woo_Stream\Helpers\Helpers;
 
 function woo_stream_load_requests() {
 
@@ -65,7 +65,7 @@ function woo_stream_load_requests() {
 
       }
 
-      $paging = ( (int) $page_count === 1 ) ? '' : Helper::paging_nav( 1, $page_no, $page_count );
+      $paging = ( (int) $page_count === 1 ) ? '' : Helpers::paging_nav( 1, $page_no, $page_count );
 
     }
 

@@ -7,7 +7,7 @@
 
 namespace Woo_Stream\Includes;
 
-use Woo_Stream\Helpers\Helpers as Helper;
+use Woo_Stream\Helpers\Helpers;
 
 class Scripts {
 
@@ -28,14 +28,14 @@ class Scripts {
     /**
      * Styles
      */
-    Helper::enqueue( 'style', 'tiny-slider', '/assets/css/tiny-slider.css' );
-    Helper::enqueue( 'style', 'woo-stream-main', '/assets/css/main.css' );
+    Helpers::enqueue( 'style', 'tiny-slider', '/assets/css/tiny-slider.css' );
+    Helpers::enqueue( 'style', 'woo-stream-main', '/assets/css/main.css' );
 
     /**
      * Scripts
      */
-    Helper::enqueue( 'script', 'tiny-slider', '/assets/js/tiny-slider.js' );
-    Helper::enqueue( 'script', 'woo-stream-main', '/assets/js/main.js', ['jquery'] );
+    Helpers::enqueue( 'script', 'tiny-slider', '/assets/js/tiny-slider.js' );
+    Helpers::enqueue( 'script', 'woo-stream-main', '/assets/js/main.js', ['jquery'] );
 
     wp_localize_script( 'woo-stream-main', 'woostObj', [
       'ajaxUrl' => admin_url( 'admin-ajax.php' ),
@@ -57,14 +57,14 @@ class Scripts {
     /**
      * Styles
      */
-    Helper::enqueue( 'style', 'select2', '/assets/css/select2.min.css' );
-    Helper::enqueue( 'style', 'woo-stream-admin', '/assets/css/admin.css' );
+    Helpers::enqueue( 'style', 'select2', '/assets/css/select2.min.css' );
+    Helpers::enqueue( 'style', 'woo-stream-admin', '/assets/css/admin.css' );
 
     /**
      * Scripts
      */
-    Helper::enqueue( 'script', 'select2', '/assets/js/select2.min.js', ['jquery'] );
-    Helper::enqueue( 'script', 'woo-stream-admin', '/assets/js/admin.js', ['jquery'] );
+    Helpers::enqueue( 'script', 'select2', '/assets/js/select2.min.js', ['jquery'] );
+    Helpers::enqueue( 'script', 'woo-stream-admin', '/assets/js/admin.js', ['jquery'] );
 
     wp_localize_script( 'woo-stream-admin', 'woostObj', [
       'pluginUrl' => woo_stream_directory_uri(),

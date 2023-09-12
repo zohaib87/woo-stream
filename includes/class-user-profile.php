@@ -7,7 +7,7 @@
 
 namespace Woo_Stream\Includes;
 
-use Woo_Stream\Helpers\Helpers as Helper;
+use Woo_Stream\Helpers\Helpers;
 
 class User_Profile {
 
@@ -77,7 +77,7 @@ class User_Profile {
             <th><label for="woost_fb_access_token"><?php echo esc_html__('Access Token (Short Lived)', 'woo-stream'); ?></label></th>
             <td>
               <input type="text" name="woost_fb_access_token" id="woost_fb_access_token" value="<?php echo esc_attr($fb_access_token); ?>" class="regular-text">
-              <p class="description"><?php echo esc_html__( 'Expires: ', 'woo-stream' ) .  Helper::fb_token_expiry( $fb_app_id, $fb_app_secret, $fb_access_token ); ?></p>
+              <p class="description"><?php echo esc_html__( 'Expires: ', 'woo-stream' ) .  Helpers::fb_token_expiry( $fb_app_id, $fb_app_secret, $fb_access_token ); ?></p>
             </td>
           </tr>
 

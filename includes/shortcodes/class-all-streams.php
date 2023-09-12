@@ -9,7 +9,7 @@
 
 namespace Woo_Stream\Includes\Shortcodes;
 
-use Woo_Stream\Helpers\Helpers as Helper;
+use Woo_Stream\Helpers\Helpers;
 
 class All_Streams {
 
@@ -20,8 +20,6 @@ class All_Streams {
   }
 
   public function html() {
-
-    if ( woo_stream_fs()->is_not_paying() ) return;
 
     global $woost_opt;
 
@@ -36,7 +34,7 @@ class All_Streams {
     if ( $streaming_service == 'enable' && $user_id ) {
 
       $permanent_token = get_the_author_meta( 'woost_fb_permanent_token', $user_id );
-      $data = Helper::fb_live_videos($permanent_token);
+      $data = Helpers::fb_live_videos($permanent_token);
 
     } else {
 
@@ -72,7 +70,7 @@ class All_Streams {
 
       foreach ( $current_items as $current_item ) {
 
-        $url = Helper::iframe_src( $current_item->embed_html );
+        $url = Helpers::iframe_src( $current_item->embed_html );
 
         ob_start();
         ?>
@@ -89,7 +87,7 @@ class All_Streams {
       $output .= '</div>';
 
       $output .= '<div class="woost-paging-nav">';
-      $output .= ( (int) $page_count === 1 ) ? '' : Helper::paging_nav( 1, $page_no, $page_count );
+      $output .= ( (int) $page_count === 1 ) ? '' : Helpers::paging_nav( 1, $page_no, $page_count );
       $output .= '</div>';
 
       return $output;

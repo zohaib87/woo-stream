@@ -11,54 +11,10 @@ class Setup {
 
   function __construct() {
 
-    add_action( 'admin_notices', [ $this, 'update_notice' ] );
     register_activation_hook( woo_stream_file(), [ $this, 'activation' ] );
     register_deactivation_hook( woo_stream_file(), [ $this, 'deactivation' ] );
-    woo_stream_fs()->add_action('after_uninstall', [ self::class, 'uninstall' ]);
+    register_uninstall_hook( woo_stream_file(), [ self::class, 'uninstall' ] );
     add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
-
-  }
-
-  /**
-   * # Plugin Update Notice on Multisite
-   */
-  public function update_notice() {
-
-    if ( ! woo_stream_fs()->is_paying() && ! woo_stream_fs()->is_trial() ) {
-      return;
-    }
-
-    if ( ! is_multisite() || (isset($_GET['page']) && $_GET['page'] == 'woo-stream-license-account') ) {
-      return;
-    }
-
-    if ( ! is_super_admin() ) {
-      return;
-    }
-
-    if ( isset($_GET['action']) && $_GET['action'] == 'upgrade-plugin' ) {
-      return;
-    }
-
-    $update = woo_stream_fs()->get_update( false, false, WP_FS__TIME_24_HOURS_IN_SEC / 24 );
-
-    if ( $update ) {
-      ?>
-        <div class="notice notice-warning">
-          <p>
-            <?php
-              echo sprintf(
-                esc_html__( 'Update available for %sWoo Stream%s, %sClick Here%s to update.', 'woo-stream' ),
-                '<strong>',
-                '</strong>',
-                '<a href="' . admin_url( 'options-general.php?page=woo-stream-license-account#pframe' ) . '">',
-                '</a>'
-              );
-            ?>
-          </p>
-        </div>
-      <?php
-    }
 
   }
 

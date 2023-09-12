@@ -7,8 +7,8 @@
 
 namespace Woo_Stream\Includes\Callbacks;
 
-use Woo_Stream\Helpers\Helpers as Helper;
-use Woo_Stream\Helpers\Views as View;
+use Woo_Stream\Helpers\Helpers;
+use Woo_Stream\Helpers\Views;
 
 class Activation_Requests {
 

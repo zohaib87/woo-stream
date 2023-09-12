@@ -9,7 +9,7 @@
 
 namespace Woo_Stream\Includes\Shortcodes;
 
-use Woo_Stream\Helpers\Helpers as Helper;
+use Woo_Stream\Helpers\Helpers;
 
 class Streams_Carousel {
 
@@ -20,8 +20,6 @@ class Streams_Carousel {
   }
 
   public function html( $atts ) {
-
-    if ( woo_stream_fs()->is_not_paying() ) return;
 
     $atts = shortcode_atts( array(
       'items' => 10,
@@ -61,7 +59,7 @@ class Streams_Carousel {
         $user_id = $the_user->ID;
 
         $permanent_token = get_user_meta( $user_id, 'woost_fb_permanent_token', true );
-        $live_videos = Helper::fb_live_videos($permanent_token);
+        $live_videos = Helpers::fb_live_videos($permanent_token);
 
         if ( is_array($live_videos) || is_object($live_videos) ) {
 
@@ -79,7 +77,7 @@ class Streams_Carousel {
 
               if ( $i == $items ) break;
 
-              $url = Helper::iframe_src( $live_videos[$i]->embed_html );
+              $url = Helpers::iframe_src( $live_videos[$i]->embed_html );
 
               ob_start();
               ?>
@@ -96,7 +94,7 @@ class Streams_Carousel {
           // If there are more than 1 users.
           } else {
 
-            $url = Helper::iframe_src( $live_videos[0]->embed_html );
+            $url = Helpers::iframe_src( $live_videos[0]->embed_html );
 
             ob_start();
             ?>
