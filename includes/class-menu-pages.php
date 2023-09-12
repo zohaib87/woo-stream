@@ -10,7 +10,8 @@
 
 namespace Woo_Stream\Includes;
 
-use Woo_Stream\Includes\Callbacks\{ Plugin_Options, Activation_Requests, License };
+use Woo_Stream\Includes\Callbacks\Plugin_Options;
+use Woo_Stream\Includes\Callbacks\Activation_Requests;
 
 class Menu_Pages {
 
@@ -27,7 +28,6 @@ class Menu_Pages {
 
     $plugin_options = new Plugin_Options();
     $activation_requests = new Activation_Requests();
-    $license = new License();
 
     $requests = get_users( [
       'meta_key' => 'woost_switch',
@@ -84,15 +84,6 @@ class Menu_Pages {
       'manage_options',
       'woo-stream-requests',
       [ $activation_requests, 'html' ]
-    );
-
-    add_submenu_page(
-      'woo-stream-options',
-      esc_html__( 'License', 'woo-stream' ),
-      esc_html__( 'License', 'woo-stream' ),
-      'manage_options',
-      'woo-stream-license',
-      [ $license, 'html' ]
     );
 
   }
